@@ -4,7 +4,9 @@ import streamlit as st
 import pandas as pd
 from snowflake.snowpark.context import get_active_session
 from snowflake.snowpark import Session, Row
+import snowflake.connector
 
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 
 # Get the current credentials
 session = get_active_session()
