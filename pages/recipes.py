@@ -33,7 +33,7 @@ session = open_session()
 
 # Function to fetch recipe details
 def fetch_recipe_details_for_humans(recipe_name):
-    recipes_for_humans = session.sql(f"CALL recipes_for_humans_by_name('{recipe_name}')").collect()
+    recipes_for_humans = session.sql(f"CALL recipes_for_humans_by_name({recipe_name})").collect()
     return recipes_for_humans
 
 # Function to use in the recipe viewer dropdown callback
