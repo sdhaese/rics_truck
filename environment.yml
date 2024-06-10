@@ -6,6 +6,7 @@ dependencies:
 - python=3.9
 - scikit-learn
 - streamlit
+- snowflake
 - snowflake-snowpark-python
 - snowflake-connector-python
 - snowflake-snowpark-context
