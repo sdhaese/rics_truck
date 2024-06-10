@@ -58,7 +58,8 @@ def click_button():
 # Function to fetch recipe names
 def fetch_recipe_names():
     recipe_names = session.sql('SELECT recipe_name FROM recipes').collect()
-    recipe_name = [row[0] for row in recipe_name][0]
+    for i in range(len(recipe_names)):
+        recipe_names[i] = [row[0] for row in recipe_name][i]
     return recipe_names
 
 # Function to fetch ingredients
