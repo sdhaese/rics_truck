@@ -7,7 +7,7 @@ from snowflake.snowpark import Session, Row
 import snowflake.connector
 
 # build the api connection
-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
 
 # Get the current credentials
 session = get_active_session()
