@@ -16,7 +16,7 @@ def open_session():
       snow_session = get_active_session()
     except:
       #READ CREDS INTO DICTIONARY
-        creds = **st.secrets["snowflake"]       
+        creds = {**st.secrets["snowflake"]}       
         #BUILD SESSION
         snow_session = sp.Session.builder.configs(creds).create()
  
