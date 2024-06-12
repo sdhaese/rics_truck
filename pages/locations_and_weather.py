@@ -33,7 +33,7 @@ session = open_session()
 
 # Function to fetch minimum precipitation data for a given day
 def fetch_min_precip_prob_for_day(day):
-    min_precip_prob_table = session.sql(f"call fetch_min_precip_prob_for_any_day('{day}')").collect()
+    min_precip_prob_table = session.sql(f"call fetch_min_precip_prob_for_any_day({day})").collect()
     df_min_precip_prob = pd.DataFrame(min_precip_prob_table)
     return df_min_precip_prob
 
