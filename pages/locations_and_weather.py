@@ -56,9 +56,11 @@ for i in range(len(li_tomorrow_rain)):
         keyword = "location_name like '%Park%'"
         st.dataframe(fetch_recommended_sites(li_tomorrow_rain[i][0], keyword))
     elif li_tomorrow_rain[i][4] > 25 and li_tomorrow_rain[i][4] < 75:
-        st.write('seems like it will probably rain in ', li_tomorrow_rain[i][0], ' today' )
         keyword = "location_name like '%Museum%' or location_name like '%University%' or location_name like '%College%'"
-        st.dataframe(fetch_recommended_sites(li_tomorrow_rain[i][0], keyword))
+        locations = fetch_recommended_sites(li_tomorrow_rain[i][0], keyword)
+        if locations:
+          st.write('seems like it will probably rain in ', li_tomorrow_rain[i][0], ' today' )
+          st.dataframe(locations)
     elif li_tomorrow_rain[i][4] >= 75:
         st.write('you should probably stay home')
 
