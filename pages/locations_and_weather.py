@@ -38,6 +38,5 @@ def fetch_min_precip_prob_for_day(day):
     return df_min_precip_prob
 
 df_tomorrow_rain = st.dataframe(fetch_min_precip_prob_for_day(1))
-st.write(len(df_tomorrow_rain))
 
 st.write(df_tomorrow_rain['PROBABILITY_OF_PRECIPITATION_PCT'][0])
