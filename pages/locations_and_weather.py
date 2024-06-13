@@ -37,6 +37,11 @@ def fetch_min_precip_prob_for_day(day):
     df_min_precip_prob = pd.DataFrame(min_precip_prob_table)
     return df_min_precip_prob
 
+# Function to fetch POI sites from frostbyte based on zip code and key words
+def fetch_recommended_sites(zip_code, keyword):
+    places_to_go = session.sql(f"select location_name from SAFEGRAPH_FROSTBYTE.PUBLIC.FROSTBYTE_TB_SAFEGRAPH_S where postal_code like '{zip_code}' and ({keyword})").collect()
+    return places_to_go
+
 # df_tomorrow_rain = st.dataframe(fetch_min_precip_prob_for_day(1))
 # li_tomorrow_rain = df_tomorrow_rain.values.tolist()
 # st.write(li_tomorrow_rain)
@@ -48,8 +53,12 @@ for i in range(len(li_tomorrow_rain)):
     # st.write(li_tomorrow_rain[i][0])
     if li_tomorrow_rain[i][4] <= 25:
         st.write('little to no chance of rain in ', li_tomorrow_rain[i][0], ' today')
+        keyword = "location_name like '%Park%'"
+        st.dataframe(fetch_recommended_sites(li_tomorrow_rain[i][0], keyword))
     elif li_tomorrow_rain[i][4] > 25 and li_tomorrow_rain[i][4] < 75:
         st.write('seems like it will probably rain in ', li_tomorrow_rain[i][0], ' today' )
+        keyword = "location_name like '%Museum%' or location_name like '%University%' or location_name like '%College%'"
+        st.dataframe(fetch_recommended_sites(li_tomorrow_rain[i][0], keyword))
     elif li_tomorrow_rain[i][4] >= 75:
         st.write('you should probably stay home')
 
