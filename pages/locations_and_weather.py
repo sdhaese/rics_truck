@@ -52,15 +52,17 @@ li_tomorrow_rain = df_tomorrow_rain.values.tolist()
 for i in range(len(li_tomorrow_rain)):
     # st.write(li_tomorrow_rain[i][0])
     if li_tomorrow_rain[i][4] <= 25:
-        st.write('little to no chance of rain in ', li_tomorrow_rain[i][0], ' today')
         keyword = "location_name like '%Park%'"
-        st.dataframe(fetch_recommended_sites(li_tomorrow_rain[i][0], keyword))
+        locations = fetch_recommended_sites(li_tomorrow_rain[i][0], keyword)
+        if locations:
+            st.write('There is little to no chance of rain in ', li_tomorrow_rain[i][0], ' today. Here are some parks you can expect lots of people to be.')
+          st.dataframe(fetch_recommended_sites(li_tomorrow_rain[i][0], keyword))
     elif li_tomorrow_rain[i][4] > 25 and li_tomorrow_rain[i][4] < 75:
         keyword = "location_name like '%Museum%' or location_name like '%University%' or location_name like '%College%'"
         locations = fetch_recommended_sites(li_tomorrow_rain[i][0], keyword)
         if locations:
-          st.write('seems like it will probably rain in ', li_tomorrow_rain[i][0], ' today' )
+          st.write('Seems like it will probably rain in ', li_tomorrow_rain[i][0], ' today. Here are some places you might still expect lots of foot traffic.' )
           st.dataframe(locations)
     elif li_tomorrow_rain[i][4] >= 75:
-        st.write('you should probably stay home')
+        st.write("It's raining everywhere. You should probably stay home.")
 
