@@ -45,7 +45,7 @@ def fetch_recommended_sites(zip_code, keyword):
 # df_tomorrow_rain = st.dataframe(fetch_min_precip_prob_for_day(1))
 # li_tomorrow_rain = df_tomorrow_rain.values.tolist()
 # st.write(li_tomorrow_rain)
-df_tomorrow_rain = fetch_min_precip_prob_for_day(3)
+df_tomorrow_rain = fetch_min_precip_prob_for_day(4)
 st.dataframe(df_tomorrow_rain)
 li_tomorrow_rain = df_tomorrow_rain.values.tolist()
 
