@@ -45,7 +45,7 @@ def fetch_recommended_sites(zip_code, keyword):
 # df_tomorrow_rain = st.dataframe(fetch_min_precip_prob_for_day(1))
 # li_tomorrow_rain = df_tomorrow_rain.values.tolist()
 # st.write(li_tomorrow_rain)
-df_tomorrow_rain = fetch_min_precip_prob_for_day(1)
+df_tomorrow_rain = fetch_min_precip_prob_for_day(3)
 st.dataframe(df_tomorrow_rain)
 li_tomorrow_rain = df_tomorrow_rain.values.tolist()
 
@@ -55,7 +55,7 @@ for i in range(len(li_tomorrow_rain)):
         keyword = "location_name like '%Park%'"
         locations = fetch_recommended_sites(li_tomorrow_rain[i][0], keyword)
         if locations:
-            st.write('There is little to no chance of rain in ', li_tomorrow_rain[i][0], ' tomorrow. Here are some parks you can expect lots of people to be.')
+            st.write('There is little to no chance of rain in ', li_tomorrow_rain[i][0], ' today. Here are some parks you can expect lots of people to be.')
           st.dataframe(fetch_recommended_sites(li_tomorrow_rain[i][0], keyword))
     elif li_tomorrow_rain[i][4] > 25 and li_tomorrow_rain[i][4] < 75:
         keyword = "location_name like '%Museum%' or location_name like '%University%' or location_name like '%College%'"
