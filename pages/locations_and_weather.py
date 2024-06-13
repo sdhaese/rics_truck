@@ -43,6 +43,5 @@ def fetch_min_precip_prob_for_day(day):
 df_tomorrow_rain = fetch_min_precip_prob_for_day(1)
 st.dataframe(df_tomorrow_rain)
 li_tomorrow_rain = df_tomorrow_rain.values.tolist()
-st.write(li_tomorrow_rain)
 
 
