@@ -48,7 +48,7 @@ for i in range(len(li_tomorrow_rain)):
     # st.write(li_tomorrow_rain[i][0])
     if li_tomorrow_rain[i][4] <= 25:
         st.write('little to no chance of rain in ', li_tomorrow_rain[i][0], ' today')
-    elif li_tomorrow_rain[i][4] > 25 and < 75:
+    elif li_tomorrow_rain[i][4] > 25 and li_tomorrow_rain[i][4] < 75:
         st.write('seems like it will probably rain in ', li_tomorrow_rain[i][0], ' today' )
     elif li_tomorrow_rain[i][4] >= 75:
         st.write('you should probably stay home')
