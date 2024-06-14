@@ -6,7 +6,7 @@ from snowflake.snowpark.context import get_active_session
 import snowflake.snowpark as sp
 from snowflake.snowpark import Session, Row
 import snowflake.connector
-from functions.functions import fetch_recipe_details_for_humans, recipe_selected, hide_recipe_details, click_button, fetch_recipe_names, fetch_ingredients, fetch_measurement_units, fetch_recipe_details, add_ingredient, add_measurement_unit, add_recipe, add_ingreds_to_recipe, fetch_recipe_id_from_name, fetch_ingredient_id_from_name, fetch_unit_id_from_name, ingredient_dataframe_for_humans, manually_modify_recipe, insert_into_recipe
+from functions import fetch_recipe_details_for_humans, recipe_selected, hide_recipe_details, click_button, fetch_recipe_names, fetch_ingredients, fetch_measurement_units, fetch_recipe_details, add_ingredient, add_measurement_unit, add_recipe, add_ingreds_to_recipe, fetch_recipe_id_from_name, fetch_ingredient_id_from_name, fetch_unit_id_from_name, ingredient_dataframe_for_humans, manually_modify_recipe, insert_into_recipe
 
 ##CREATE NEW FUNCTION TO TRY GET ACTIVE SESSION FROM SNOWPARK
 ##OTHERWISE BUILD CONNECTION
