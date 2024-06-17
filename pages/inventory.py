@@ -1,13 +1,11 @@
 # Import python packages
 import streamlit as st
 import pandas as pd
-from snowflake.snowpark.context import get_active_session
-from snowflake.snowpark import Session, Row
 from functions.functions import open_session, get_inventory, fetch_measurement_units, fetch_ingredient_id_from_name, fetch_unit_id_from_name, update_inventory_manual
 
 
 # Get the current credentials
-session = get_active_session()
+session = open_session()
 
 df_inventory = get_inventory()
 df_unit_names = fetch_measurement_units()[1]

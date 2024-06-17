@@ -2,10 +2,6 @@
 # Import python packages
 import streamlit as st
 import pandas as pd
-from snowflake.snowpark.context import get_active_session
-import snowflake.snowpark as sp
-from snowflake.snowpark import Session, Row
-import snowflake.connector
 from functions.functions import open_session, fetch_min_precip_prob_for_day, fetch_recommended_sites
 
 # Run open session function to create a session
