@@ -8,6 +8,7 @@ from functions.functions import open_session, get_inventory, fetch_measurement_u
 session = open_session()
 
 df_inventory = get_inventory()
+st.write(len(df_inventory))
 df_unit_names = fetch_measurement_units()[1]
 df_ingredients_list = fetch_ingredients()[1]
 df_not_in_inventory = not_in_inventory = df_ingredients_list[~df_ingredients_list['INGREDIENT_NAME'].isin(df_inventory['INGREDIENT_NAME'])]
