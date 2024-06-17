@@ -10,6 +10,7 @@ session = open_session()
 df_inventory = get_inventory()
 df_unit_names = fetch_measurement_units()[1]
 df_ingredients_list = fetch_ingredients()[1]
+df_not_in_inventory = not_in_inventory = df_ingredients_list[~df_ingredients_list['INGREDIENT_NAME'].isin(df_inventory['INGREDIENT_NAME'])]
 
 st.title('Inventory Management')
 
@@ -24,7 +25,7 @@ if 'manually_update_inventory' in st.session_state and st.session_state.manually
         column_config={
             'INGREDIENT_NAME': st.column_config.SelectboxColumn(
                 "INGREDIENT_NAME",
-                options = list(df_ingredients_list['INGREDIENT_NAME'] for i in df_ingredients_list['INGREDIENT_NAME'] not in df_ingredients_list['INGREDIENT_NAME']),
+                options = list(df_not_in_inventory['INGREDIENT_NAME']),
                 required = True,
             ),
             'UNIT_NAME': st.column_config.SelectboxColumn(
