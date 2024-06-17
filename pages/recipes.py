@@ -13,6 +13,7 @@ if 'clicked' not in st.session_state:
     
 df_ingredients_list = fetch_ingredients()[1]
 df_ingredients_plus_id = fetch_ingredients()[0]
+df_unit_names = fetch_measurement_units()[1]
 
 #=====================================================================
 # Recipe Viewer
