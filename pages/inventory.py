@@ -1,7 +1,7 @@
 # Import python packages
 import streamlit as st
 import pandas as pd
-from functions.functions import open_session, get_inventory, fetch_measurement_units, fetch_ingredient_id_from_name, fetch_unit_id_from_name, update_inventory_manual
+from functions.functions import open_session, get_inventory, fetch_measurement_units, fetch_ingredient_id_from_name, fetch_unit_id_from_name, update_inventory_manual, fetch_ingredients
 
 
 # Get the current credentials
@@ -9,6 +9,7 @@ session = open_session()
 
 df_inventory = get_inventory()
 df_unit_names = fetch_measurement_units()[1]
+df_ingredients_list = fetch_ingredients()[1]
 
 st.title('Inventory Management')
 
@@ -23,7 +24,7 @@ if 'manually_update_inventory' in st.session_state and st.session_state.manually
         column_config={
             'INGREDIENT_NAME': st.column_config.SelectboxColumn(
                 "INGREDIENT_NAME",
-                options = list(df_inventory['INGREDIENT_NAME']),
+                options = list(df_ingredients_list['INGREDIENT_NAME']),
                 required = True,
             ),
             'UNIT_NAME': st.column_config.SelectboxColumn(
