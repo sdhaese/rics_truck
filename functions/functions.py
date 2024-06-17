@@ -169,3 +169,24 @@ def insert_into_recipe(ingredient_name, quantity, unit_name, recipe_name, compon
     session.sql(f"""insert into recipe_components (recipe_id, ingredient_id, unit_id, quantity, component_order) values ({recipe_id}, {ingredient_id}, {unit_id}, {quantity}, {component_order})""").collect()
     
 
+# Function to fetch current inventory
+def get_inventory():
+    df_inventory = pd.DataFrame(session.sql('select * from inventory_for_humans').collect())
+    return df_inventory
+
+# Function to update inventory from manual entries in inventory dataframe
+def update_inventory_manual(ingredient_name, qty_available, unit_name):
+    ingredient_id = fetch_ingredient_id_from_name(ingredient_name)
+    unit_id = fetch_unit_id_from_name(unit_name)
+    session.sql(f"""update inventory set qty_available = {qty_available}, unit_id = {unit_id} where ingredient_id = {ingredient_id}""").collect()
+
+# Function to fetch minimum precipitation data for a given day
+def fetch_min_precip_prob_for_day(day):
+    min_precip_prob_table = session.sql(f"call fetch_min_precip_prob_for_any_day({day})").collect()
+    df_min_precip_prob = pd.DataFrame(min_precip_prob_table)
+    return df_min_precip_prob
+
+# Function to fetch POI sites from frostbyte based on zip code and key words
+def fetch_recommended_sites(zip_code, keyword):
+    places_to_go = session.sql(f"select location_name from SAFEGRAPH_FROSTBYTE.PUBLIC.FROSTBYTE_TB_SAFEGRAPH_S where postal_code like '{zip_code}' and ({keyword})").collect()
+    return places_to_go
