@@ -25,6 +25,7 @@ if 'manually_update_inventory' in st.session_state and st.session_state.manually
                 "INGREDIENT_NAME",
                 options = list(df_inventory['INGREDIENT_NAME']),
                 required = True,
+            ),
             'UNIT_NAME': st.column_config.SelectboxColumn(
                 "UNIT_NAME",
                 options = list(df_unit_names['UNIT_NAME']),
