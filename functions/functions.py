@@ -196,3 +196,6 @@ def insert_inventory_line(ingredient_name, qty, unit_name):
     ingredient_id = fetch_ingredient_id_from_name(ingredient_name)
     unit_id = fetch_unit_id_from_name(unit_name)
     session.sql(f"insert into inventory (ingredient_id, qty_available, unit_id) values ({ingredient_id}, {qty}, {unit_id})").collect()
+
+# Function to subtract igredients from inventory
+def subtract_from_inventory():

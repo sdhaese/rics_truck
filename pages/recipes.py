@@ -75,7 +75,14 @@ if st.session_state.visible:
                 st.session_state.modify_selected_recipe = False
     else:
         st.dataframe(details, hide_index=True)
-        st.button('Hide Details', on_click = hide_recipe_details)
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            make_recipe_button = st.button('Make Recipe')
+        with col2:
+            make_recipe_for_inv_button = st.button('Make Recipe for Inventory')
+        with col3:
+            hide_details_button = st.button('Hide Details', on_click = hide_recipe_details)
+        
 
 
 # =========================================================================
