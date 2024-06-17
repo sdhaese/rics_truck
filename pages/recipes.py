@@ -6,22 +6,22 @@ from snowflake.snowpark.context import get_active_session
 import snowflake.snowpark as sp
 from snowflake.snowpark import Session, Row
 import snowflake.connector
-from functions.functions import fetch_recipe_details_for_humans, recipe_selected, hide_recipe_details, click_button, fetch_recipe_names, fetch_ingredients, fetch_measurement_units, fetch_recipe_details, add_ingredient, add_measurement_unit, add_recipe, add_ingreds_to_recipe, fetch_recipe_id_from_name, fetch_ingredient_id_from_name, fetch_unit_id_from_name, ingredient_dataframe_for_humans, manually_modify_recipe, insert_into_recipe
+from functions.functions import fetch_recipe_details_for_humans, recipe_selected, hide_recipe_details, click_button, fetch_recipe_names, fetch_ingredients, fetch_measurement_units, fetch_recipe_details, add_ingredient, add_measurement_unit, add_recipe, add_ingreds_to_recipe, fetch_recipe_id_from_name, fetch_ingredient_id_from_name, fetch_unit_id_from_name, ingredient_dataframe_for_humans, manually_modify_recipe, insert_into_recipe, open_session
 
-##CREATE NEW FUNCTION TO TRY GET ACTIVE SESSION FROM SNOWPARK
-##OTHERWISE BUILD CONNECTION
-def open_session():
-    snow_session = None
+# ##CREATE NEW FUNCTION TO TRY GET ACTIVE SESSION FROM SNOWPARK
+# ##OTHERWISE BUILD CONNECTION
+# def open_session():
+#     snow_session = None
  
-    try:
-      snow_session = get_active_session()
-    except:
-      #READ CREDS INTO DICTIONARY
-        creds = {**st.secrets["snowflake"]}       
-        #BUILD SESSION
-        snow_session = sp.Session.builder.configs(creds).create()
+#     try:
+#       snow_session = get_active_session()
+#     except:
+#       #READ CREDS INTO DICTIONARY
+#         creds = {**st.secrets["snowflake"]}       
+#         #BUILD SESSION
+#         snow_session = sp.Session.builder.configs(creds).create()
  
-    return snow_session
+#     return snow_session
 
 # Run open session function to create a session
 session = open_session()

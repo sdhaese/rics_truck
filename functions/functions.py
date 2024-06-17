@@ -1,5 +1,20 @@
 import streamlit as st
 
+##CREATE NEW FUNCTION TO TRY GET ACTIVE SESSION FROM SNOWPARK
+##OTHERWISE BUILD CONNECTION
+def open_session():
+    snow_session = None
+ 
+    try:
+      snow_session = get_active_session()
+    except:
+      #READ CREDS INTO DICTIONARY
+        creds = {**st.secrets["snowflake"]}       
+        #BUILD SESSION
+        snow_session = sp.Session.builder.configs(creds).create()
+ 
+    return snow_session
+
 # Function to fetch recipe details
 def fetch_recipe_details_for_humans(recipe_name):
     recipes_for_humans = session.sql(f"CALL recipes_for_humans_by_name('{recipe_name}')").collect()
@@ -146,3 +161,4 @@ def insert_into_recipe(ingredient_name, quantity, unit_name, recipe_name, compon
     component_order = max_component_order + component_order_adder
     session.sql(f"""insert into recipe_components (recipe_id, ingredient_id, unit_id, quantity, component_order) values ({recipe_id}, {ingredient_id}, {unit_id}, {quantity}, {component_order})""").collect()
     
+
