@@ -190,3 +190,9 @@ def fetch_min_precip_prob_for_day(day):
 def fetch_recommended_sites(zip_code, keyword):
     places_to_go = session.sql(f"select location_name from SAFEGRAPH_FROSTBYTE.PUBLIC.FROSTBYTE_TB_SAFEGRAPH_S where postal_code like '{zip_code}' and ({keyword})").collect()
     return places_to_go
+
+# Function to insert a new line into inventory
+def insert_inventory_line(ingredient_name, qty, unit_name)
+    ingredient_id = fetch_ingredient_id_from_name(ingredient_name)
+    unit_id = fetch_unit_id_from_name(unit_name)
+    session.sql(f"insert into inventory (ingredient_id, qty_available, unit_id) values ({ingredient_id},{qty}, {unit_id})")

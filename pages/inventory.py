@@ -1,14 +1,14 @@
 # Import python packages
 import streamlit as st
 import pandas as pd
-from functions.functions import open_session, get_inventory, fetch_measurement_units, fetch_ingredient_id_from_name, fetch_unit_id_from_name, update_inventory_manual, fetch_ingredients
+from functions.functions import open_session, get_inventory, fetch_measurement_units, fetch_ingredient_id_from_name, fetch_unit_id_from_name, update_inventory_manual, fetch_ingredients, insert_inventory_line
 
 
 # Get the current credentials
 session = open_session()
 
 df_inventory = get_inventory()
-st.write(len(df_inventory))
+original_inv_len = len(df_inventory) - 1
 df_unit_names = fetch_measurement_units()[1]
 df_ingredients_list = fetch_ingredients()[1]
 df_not_in_inventory = not_in_inventory = df_ingredients_list[~df_ingredients_list['INGREDIENT_NAME'].isin(df_inventory['INGREDIENT_NAME'])]
@@ -41,8 +41,12 @@ if 'manually_update_inventory' in st.session_state and st.session_state.manually
     
     if st.button('Commit Inventory Update'):
         for i in range(len(editable_inv)):
-            update_inventory_manual((editable_inv['INGREDIENT_NAME'][i]), editable_inv['QTY_AVAILABLE'][i], editable_inv['UNIT_NAME'][i])
-            st.session_state.manually_update_inventory = False
+            if i > original_inv_len:
+                insert_inventory_line((editable_inv['INGREDIENT_NAME'][i]), editable_inv['QTY_AVAILABLE'][i], editable_inv['UNIT_NAME'][i])
+                st.session_state.manually_update_inventory = False
+            else:
+                update_inventory_manual((editable_inv['INGREDIENT_NAME'][i]), editable_inv['QTY_AVAILABLE'][i], editable_inv['UNIT_NAME'][i])
+                st.session_state.manually_update_inventory = False
         st.success('Inventory Updated')
 
 else:
