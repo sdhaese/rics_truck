@@ -198,4 +198,4 @@ def insert_inventory_line(ingredient_name, qty, unit_name):
     session.sql(f"insert into inventory (ingredient_id, qty_available, unit_id) values ({ingredient_id}, {qty}, {unit_id})").collect()
 
 # Function to subtract igredients from inventory
-def subtract_from_inventory():
+# def subtract_from_inventory():
