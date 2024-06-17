@@ -45,7 +45,7 @@ if 'manually_update_inventory' in st.session_state and st.session_state.manually
         st.success('Inventory Updated')
 
 else:
-    st.dataframe(df_inventory)
+    st.dataframe(df_inventory, hide_index = True)
     
     
 
