@@ -43,10 +43,9 @@ if 'manually_update_inventory' in st.session_state and st.session_state.manually
         for i in range(len(editable_inv)):
             if i > original_inv_len:
                 insert_inventory_line((editable_inv['INGREDIENT_NAME'][i]), editable_inv['QTY_AVAILABLE'][i], editable_inv['UNIT_NAME'][i])
-                st.session_state.manually_update_inventory = False
             else:
                 update_inventory_manual((editable_inv['INGREDIENT_NAME'][i]), editable_inv['QTY_AVAILABLE'][i], editable_inv['UNIT_NAME'][i])
-                st.session_state.manually_update_inventory = False
+        st.session_state.manually_update_inventory = False
         st.success('Inventory Updated')
 
 else:
